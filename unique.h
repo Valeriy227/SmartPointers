@@ -29,44 +29,18 @@ public:
     template <typename R>
     explicit UniquePtr(R* ptr) : pair_(ptr, Deleter()) {
     }
-    //    template<typename R, typename Del2>
-    //    UniquePtr(R *ptr, Del2& deleter) {
-    //        pair_.GetFirst() = ptr;
-    //        pair_.GetSecond() = deleter;
-    //    }
-    //    template<typename R, typename Del2>
-    //    UniquePtr(R *ptr, Del2&& deleter) {
-    //        pair_.GetFirst() = ptr;
-    //        pair_.GetSecond() = std::forward<>(deleter);
-    //    }
     template <typename R, typename Del2>
     UniquePtr(R* ptr, Del2&& deleter) : pair_(ptr, std::forward<Del2>(deleter)) {
     }
     template <typename R, typename Del2>
     UniquePtr(R* ptr, const Del2& deleter) : pair_(ptr, deleter) {
     }
-    //  template<typename R, typename Del2>
-    //  UniquePtr(R *ptr, const Del2& deleter) {
-    //      pair_.GetFirst() = ptr;
-    //      pair_.GetSecond() = deleter;
-    //  }
-
-<<<<<<< Updated upstream
-    explicit UniquePtr(T* ptr = nullptr);
-    UniquePtr(T* ptr, Deleter deleter);
-=======
     template <typename Del2>
     UniquePtr(std::nullptr_t ptr, const Del2& deleter) : pair_(ptr, deleter) {
     }
     template <typename Del2>
     UniquePtr(std::nullptr_t ptr, Del2&& deleter) : pair_(ptr, std::forward<Del2>(deleter)) {
     }
-    //     template<typename R>
-    //     UniquePtr(R *ptr, const Deleter& deleter) {
-    //         pair_.GetFirst() = ptr;
-    //         pair_.GetSecond() = std::forward<Deleter>(deleter);
-    //     }
->>>>>>> Stashed changes
 
     template <typename R, typename Del2>
     UniquePtr(UniquePtr<R, Del2>&& other) noexcept

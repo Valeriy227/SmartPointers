@@ -104,15 +104,11 @@ public:
     // Aliasing constructor
     // #8 from https://en.cppreference.com/w/cpp/memory/shared_ptr/shared_ptr
     template <typename Y>
-<<<<<<< Updated upstream
-    SharedPtr(const SharedPtr<Y>& other, T* ptr);
-=======
     SharedPtr(const SharedPtr<Y>& other, T* ptr) : block_(other.block_), ptr_(ptr) {
         if (block_) {
             block_->strong_++;
         }
     }
->>>>>>> Stashed changes
 
     // Promote `WeakPtr`
     // #11 from https://en.cppreference.com/w/cpp/memory/shared_ptr/shared_ptr
